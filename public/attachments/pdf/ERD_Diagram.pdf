@@ -1,0 +1,141 @@
+// ERD Diagram
+digraph {
+	students [label="students
+id
+name
+email
+password
+gender_id
+Grade_id
+Classroom_id
+r_number
+deleted_at
+created_at
+updated_at"]
+	teachers [label="teachers
+id
+email
+password
+Name
+Grade_id
+Classroom_id
+Gender_id
+status
+created_at
+updated_at"]
+	classrooms [label="classrooms
+id
+Name_Class
+Grade_id
+created_at
+updated_at"]
+	grades [label="grades
+id
+created_at
+updated_at
+Name
+file_name
+Notes"]
+	subjects [label="subjects
+id
+name
+grade_id
+classroom_id
+teacher_id
+sub_number
+Favorite
+created_at
+updated_at"]
+	my__subjects [label="my__subjects
+id
+name
+grade_id
+classroom_id
+teacher_id
+student_id
+subject_id
+Favorite
+created_at
+updated_at"]
+	lectures [label="lectures
+id
+title
+file_name
+tyep_lecture
+grade_id
+classroom_id
+teacher_id
+subject_id
+created_at
+updated_at"]
+	messages [label="messages
+id
+conversation_id
+student_id
+teacher_id
+read
+body
+type
+created_at
+updated_at"]
+	conversations [label="conversations
+id
+student_id
+teacher_id
+last_time_message
+created_at
+updated_at"]
+	summaries [label="summaries
+id
+student_name
+title
+grade_id
+classroom_id
+subject_id
+file_name
+status
+created_at
+updated_at"]
+	genders [label="genders
+id
+Name
+created_at
+updated_at"]
+	notifications [label="notifications
+id
+title
+grade_id
+classroom_id
+Notes
+rools
+seen
+created_at
+updated_at"]
+	students -> genders [label="Belongs to"]
+	students -> grades [label="Belongs to"]
+	students -> classrooms [label="Belongs to"]
+	teachers -> grades [label=Teaches]
+	teachers -> classrooms [label=Teaches]
+	teachers -> genders [label="Belongs to"]
+	classrooms -> grades [label=Contains]
+	subjects -> grades [label="Part of"]
+	subjects -> classrooms [label="Held in"]
+	subjects -> teachers [label="Taught by"]
+	my__subjects -> students [label="Favorited by"]
+	my__subjects -> subjects [label=Includes]
+	my__subjects -> teachers [label="Taught by (Indirect)"]
+	lectures -> grades [label="Part of"]
+	lectures -> classrooms [label="Held in"]
+	lectures -> teachers [label="Taught by"]
+	lectures -> subjects [label=Discusses]
+	messages -> conversations [label="Belongs to"]
+	messages -> students [label="Sent by"]
+	messages -> teachers [label="Sent by"]
+	conversations -> students [label=Involves]
+	conversations -> teachers [label=Involves]
+	summaries -> grades [label="Part of"]
+	summaries -> classrooms [label="Part of"]
+	summaries -> subjects [label=Summarizes]
+	notifications -> grades [label=Concerns]
+	notifications -> classrooms [label=Concerns]
+}
